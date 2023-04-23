@@ -3,7 +3,7 @@
 Emoji hunt is an interactive game similar to virtual treasure hunt.
 It is fun to play and has a very friendly user interface.
 
-# GamePlay
+# gameplay
 
 The player will be given a few riddles, the answer for each riddle is among the stickrs present in the screen. Only on finding the correct sticker, the player can hop on to the next question. 
 
