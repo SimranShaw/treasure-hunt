@@ -638,7 +638,7 @@
         <div class="modal-content">
         <span class="close">&times;</span>
         <p id = "correct">yup, that is correct! please click below to continue...</p>
-        <p id = "deadEnd">That's a dead end :(, click on next to continue...</p>
+        <p id = "deadEnd">That's a dead end :(, please restart the game...</p>
         <form action="/saveAns" method="post"><button class = "button-3" id = "submit">Next Clue</button></form>
         </div>
     </div>
@@ -728,7 +728,6 @@
             setCookie("error", error, 2);
             alert("oops. wrong answer. chances left : "+chances);
             if(chances == 0){
-                alert("Please restart the game again!");
                 levelUnlocked = 0;
                 chances = 2;
                 setCookie("levelUnlocked", levelUnlocked, 2);
