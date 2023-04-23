@@ -25,7 +25,7 @@
         padding: 0;
     }
     .emoji{
-        font-size: 47px;
+        font-size: 50px;
         align-items: center;
     }
     .emoji:hover{
@@ -41,14 +41,24 @@
         padding: 1rem;
         background-color: #ffe8df2b;
         width: 100%;
-        position: absolute;    
+        position: relative;    
+        margin: 20px;
+        height: 40px;
+        
 }
    .question-content{
+    padding: 15px;
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
     border-color: #d6e9c6;
     color: #c7ffc8;
-    vertical-align: middle;
     text-align: center;
-    position: relative;    
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
     }
 
     .modal {
@@ -67,22 +77,33 @@
   
    /* Modal Content */
    .modal-content {
-    background-color: #fefefe;
+    background-color: #ffffff;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    width: 40%;
+    font-family: 'Rubik', sans-serif;
+    border-radius: 4px;
+    text-align: center;
+    align-items: center;
    }
    .close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  /* .logOut{
-    margin-top: 1px;
-    margin-right: 2px;
-    } */
+    }
+  .logOut{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background-color: #ffffff4a;
+    color: #c7ffc8;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 5px;    
+}
   
 </style>
 
@@ -90,14 +111,14 @@
     <div class="header">
         <form method="post" action="/logOut" class="inline">
             <input type="hidden" name="extra_submit_param" value="extra_submit_value">
-            <button id="logOut" class="logOut" type="submit" name="submit_param" value="Log Out" class="link-button">
+            <p class="headerText" style="font-size: 20px; text-align: center; color: #318fc5;">Welcome to the board - <%= user.userMailID %>! </p>
+            <button style="font-size: 12px;" id="logOut" class="logOut" type="submit" name="submit_param" value="Log Out" class="link-button">
               Log Out
             </button>
-        <p class="headerText" >Welcome to the board - <%= user.userMailID %> </p>
           </form>
     </div>
 
-    <table>
+    <table style = "margin-left:auto;margin-right:auto;">
         <tr>
             <td>
                 <div class="divImg">
@@ -616,9 +637,9 @@
         <!-- Modal content -->
         <div class="modal-content">
         <span class="close">&times;</span>
-        <p id = "correct">yup, that is correct!</p>
+        <p id = "correct">yup, that is correct! please click below to continue...</p>
         <p id = "deadEnd">That's a dead end :(, click on next to continue...</p>
-        <form action="/saveAns" method="post"><button id = "submit">➡️</button></form>
+        <form action="/saveAns" method="post"><button class = "button-3" id = "submit">Next Clue</button></form>
         </div>
     </div>
 
