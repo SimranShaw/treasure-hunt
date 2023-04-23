@@ -2,26 +2,28 @@
 <html lang="en">
 <head>
   <title>Dashboard</title>
-  <link rel="stylesheet" href="./assets/gamePageStyle2.css">
+  <link rel="stylesheet" href="./assets/user-list.css">
 </head>
 <body>
     <div class="header">
         <form method="post" action="/logOut" class="inline">
             <input type="hidden" name="extra_submit_param" value="extra_submit_value">
-            <button type="submit" name="submit_param" value="Log Out" class="link-button">
+            <button class="logOut" type="submit" name="submit_param" value="Log Out" class="link-button">
               Log Out
             </button>
           </form>
     </div>
     <div class="table-data">
-<h2>Display Data using Node.js & MySQL</h2>
-    <table border="1">
+<h2 class="tbl">Player list and scores</h2>
+    <table class="tbl" border="1">
         <tr>
             <th>INDEX</th>
             <th>MAIL ID</th>
             <th>LEVEL</th>
             <th>ACCURACY</th>
             <th>MISTAKES COMMITTED</th>
+            <th>SCORE</th>
+
         </tr>
         
         <%
@@ -33,13 +35,14 @@
             <td><%=i; %></td>
             <td><%=data.userMailID %></td>
             <td><%=data.levelUnlocked %></td>
-            <td><%=data.accuracy %></td>
+            <td><%=data.accuracy %>%</td>
             <td><%=data.error %></td>
+            <td><%=data.score %></td>
         </tr>
         <%  i++; }) %>
         <% } else{ %>
             <tr>
-                <td colspan="5">No Data Found</td>
+                <td colspan="6">No Data Found</td>
             </tr>
         <% } %>
     </table>

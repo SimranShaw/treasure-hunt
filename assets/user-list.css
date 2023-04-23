@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(32, 32, 32)
+  }
+
+  .tbl{
+    color: beige;
+    font-family: 'Rubik', sans-serif;
+    border-collapse: collapse;
+    border-color: beige;
+    border: 1px;
+  }
+  .logOut{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background-color: #ffffff4a;
+    color: #c7ffc8;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 5px;    
+}
+
+    .logOut:hover{
+        cursor: pointer;
+        filter: brightness(0.85);
+    }

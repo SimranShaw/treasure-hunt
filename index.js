@@ -65,7 +65,7 @@ app.post("/signIn", encoder, function(req, res){
             
             if(req.session.isAdmin == true){
                 console.log("admin");
-                connection.query("SELECT userMailID, levelUnlocked, accuracy, error FROM login INNER JOIN usergamedata ON login.userID = usergamedata.userID;", function(error, customerList, fields){
+                connection.query("SELECT userMailID, levelUnlocked, accuracy, error, score FROM login INNER JOIN usergamedata ON login.userID = usergamedata.userID;", function(error, customerList, fields){
                     console.log(customerList);
                     res.render('user-list', { title: 'User List', userData: customerList});
                 });
@@ -105,7 +105,7 @@ app.post("/register", encoder, function(req, res){
                         tempUserID = row.userID;
                     });
 
-                    connection.query("INSERT INTO usergamedata(userID, levelUnlocked, accuracy, error, attempts, timeTaken) values(?, 0, 0, 0, 0, 0)",[tempUserID], function(errorr, results, fields){
+                    connection.query("INSERT INTO usergamedata(userID, levelUnlocked, accuracy, error, attempts, timeTaken, score) values(?, 0, 0, 0, 0, 0, 0)",[tempUserID], function(errorr, results, fields){
                         var message = " User registered successfully";
                         res.render("index", {message});
                     })
@@ -121,6 +121,7 @@ app.post("/saveAns", encoder, function(req, res){
     var error = (req.cookies[`error`]);
     var attempts = (req.cookies[`attempts`]);
     var accuracy=0;
+    var score = 0;
 
     var userID = req.session.userID;
 
@@ -129,9 +130,10 @@ app.post("/saveAns", encoder, function(req, res){
         if(results.length > 0){
             
             accuracy = ((attempts-error)/attempts)*100;
+            score = ((100*newLevelUnlocked) + (7*accuracy) + (600-timeTaken))/20;
 
 
-            connection.query("UPDATE usergamedata SET levelunlocked = ?, timeTaken = ?, error = ?, attempts = ?, accuracy = ? WHERE userID = ?",[newLevelUnlocked, timeTaken, error, attempts, accuracy, userID], function(errorr, results, fields){
+            connection.query("UPDATE usergamedata SET levelunlocked = ?, timeTaken = ?, error = ?, attempts = ?, accuracy = ?, score = ? WHERE userID = ?",[newLevelUnlocked, timeTaken, error, attempts, accuracy, score, userID], function(errorr, results, fields){
             })
         }
 
