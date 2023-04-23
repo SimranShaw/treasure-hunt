@@ -130,7 +130,7 @@ app.post("/saveAns", encoder, function(req, res){
         if(results.length > 0){
             
             accuracy = ((attempts-error)/attempts)*100;
-            score = ((100*newLevelUnlocked) + (7*accuracy) + (600-timeTaken))/20;
+            score = ((100*newLevelUnlocked) + (7*accuracy) + (700-timeTaken))/20;
 
 
             connection.query("UPDATE usergamedata SET levelunlocked = ?, timeTaken = ?, error = ?, attempts = ?, accuracy = ?, score = ? WHERE userID = ?",[newLevelUnlocked, timeTaken, error, attempts, accuracy, score, userID], function(errorr, results, fields){
