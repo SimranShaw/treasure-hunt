@@ -3,6 +3,8 @@ var mysql = require('mysql')
 const express = require("express");
 const app = express()
 
+const PORT = process.env.PORT || 3000
+
 app.set('view engine','ejs');
 
 const bodyParser = require("body-parser");
@@ -43,7 +45,8 @@ connection.connect(function(err){
 })
 
 app.get("/", function(req, res){
-    res.sendFile(__dirname + "/index.html");
+    var message = " ";
+            res.render("index", {message});
 })
 
 app.post("/signIn", encoder, function(req, res){
@@ -73,7 +76,8 @@ app.post("/signIn", encoder, function(req, res){
         }
         
         else{
-            res.redirect("/");
+            var message = " Wrong UserName and Password";
+            res.render("index", {message});  
         }
         // res.end();
     })
@@ -102,8 +106,8 @@ app.post("/register", encoder, function(req, res){
                     });
 
                     connection.query("INSERT INTO usergamedata(userID, levelUnlocked, accuracy, error, attempts, timeTaken) values(?, 0, 0, 0, 0, 0)",[tempUserID], function(errorr, results, fields){
-                        res.redirect("/");
-                        res.end();
+                        var message = " User registered successfully";
+                        res.render("index", {message});
                     })
                 }
             }) 
@@ -194,4 +198,6 @@ app.get("/emojiHunt.html", function(req, res){
 
 
 // set app port
-app.listen(4000);
+app.listen(PORT, () => {
+
+})

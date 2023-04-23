@@ -113,3 +113,9 @@
   .login-form .action button:nth-child(2):hover {
     background: #3c4d6d;
   }
+
+  .errorText {
+    color: rgb(55, 20, 10);
+    font-size: 25px;
+    font-family: 'Rubik', sans-serif;
+  }
